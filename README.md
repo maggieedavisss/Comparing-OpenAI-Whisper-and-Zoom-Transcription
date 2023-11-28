@@ -1,1 +1,2 @@
-# Comparing Open AI Whisper and Zoom Transcription Technologies
+# Comparing Open AI Whisper and Zoom Transcription 
+A group of 4 students worked together comparing 2 speech-to-text services, Open AI Whisper and Zoom Transcription. 
