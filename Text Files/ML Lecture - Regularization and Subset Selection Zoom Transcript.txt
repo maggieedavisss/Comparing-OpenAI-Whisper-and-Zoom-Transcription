@@ -1,0 +1,175 @@
+ Hi,  everyone.  So  thank  you  very  much  for  watching  this  video  for  the  machine  learning  course.  So  for  this  lecture,
+ I'm  just  going  to  be  blind  and  have  a  lab  section  that  I  hope  this  session  can  help  you  to  finish  their  second  homework.
+ So  in  this  lab  section,  we're  going  to  learn  how  we  can  implement  their  subset  selection  methods  and  organization  methods  in  Python.
+ So  the  first  part  is  we're  going  to  see  how  we  can  implement  their  best  subset  selection  forward  selection  and  backward  selection  in  Python.
+ Okay.  So  first,  we  are  going  to  import  their  NumPy  pandas  and  their  matplotlib  package.
+ And  then  for  this  exercise,  we  are  going  to  use  the  header  state  where  we  want  to  predict  a  baseball  player's  salary  on  the  basis  of  various  statistics  associated  with  the  performance  in  their  previous  year.
+ So  to  start,  let's  first  look  at  their  data  so  we  can  load  the  data  from  the  ISLP  package.
+ So  what  we  want  to  do  is  we  want  to  predict  the  salary  based  on  some  other  variables.  And  then  in  this  data  set,  we  can  see  that  for  some  of  the  players,
+ their  salary  is  missing.  So  what  we  want  to  do  first  is  to  count  how  many  players  with  missing  salary.
+ And  there  are  59  in  total.  So  what  we  want  to  do  is  we  want  to  clean  up  the  dataset  a  bit  and  remove  the  players  where  we  do  not  have  their  salary  information.
+ So  the  way  to  do  that  is  we  drop  the  players  without  salary  information.  And  then  by  using  that,
+ we  have  this  heaters  clean  dataset.  And  then  after  we  do  that,  we  can  see  that  we  do  not  have  any  more  players  without  salary  in  this  clean  data.
+ And  then  the  next  is  to  construct  the  data  frame  of  predictors  and  their  pandas  hamsters  for  their  outcome  of  the  salary.
+ So  the  way  to  do  that  is  we  use  the  the  SM  from  the  stats  model  API  package.  And  then  you  may  have  noticed  that  in  their  original  data,
+ some  of  their  variables  are  categorical  like  lake  division  and  new  lake.  So  we  first  want  to  get  dummy  variables  from  this  categorical  dataset.
+ And  then  we  extract  their  salary  as  their  outcome.  So  for  the  X,
+ we  drop  their  categorical  variables  and  their  outcome  salary.  And  then  we  convert  the  data  type  to  float.  And  then  we  can  calculate  their  X  with  the  dummy  variables  of  those  categorical  variables.
+ And  we  get  their  data  frame  of  all  the  predictors.  So  we  can  see  that  there  are  19  predictors  in  total.
+ And  then  the  next  is  to  conduct  their  best  subsets  subset  selection.  And  then  to  do  that,  we  write  two  functions.
+ The  first  function  is  what  we  call  as  the  process  subset.  So  what  this  function  does  is  based  on  the  names  of  their  features,
+ we  construct  a  subset  of  X  with  the  subsets  of  the  feature  names.  And  then  we  pass  that  into  the  stats  allow  as.
+ So  we  predict  Y  based  on  the  subsets  of  the  features  in  X.  And  then  we  fit  the  model.  After  we  fit  the  model,
+ we  calculate  the  residual  sum  of  squares.  And  then  we  return  the  model  prediction,  the  model  and  the  residual  sum  of  squares.
+ So  that  is  the  first  option.  The  next  function  is  for  each  number  of  predictors  K,  we  want  to  identify  the  best  K  predictors.
+ So  we  write  a  function  to  do  that.  And  then  this  function  is  what  we  call  as  gets  best.  So  here  we  tell  how  long  we  should  take  to  get  the  best  K  predictor  model.
+ And  we  compare  this  again  as  the  forward  and  backward  selection.  Next,  we  can  see  that  the  best  subset  selection  is  more  time  consuming.
+ And  then  for  this  part,  we  use  a  function  where  we  call  as  the  eat  her  true  stock  munitions.  munitions".  So  basically  this  could  identify  all  the  k  variables  from  the  19  variables  in  total.
+ And  then  based  on  that,  so  we  get  all  the  possible  k  feature  names,  we  then  pass  that  into  the  process  subsets  to  fit  the  model  using  the  subsets  features.
+ And  then  we  get  the  model  and  they  receive  some  of  the  scores  and  append  that  to  their  results.  Then  we  wrap  everything  up  into  a  nice  data  frame.
+ We  choose  the  model  with  the  minimum  receive  some  of  the  scores.  And  then  last  is  to  count  how  long  it  takes  to  get  their  best  k  predictor  model.
+ Another  next  is  we  either  rate  the  number  of  predictors  from  one  to  seven.
+ And  then  we  get  their  best  one  to  best  seven  predictor  model.  So  here  I'm  not  going  to  run  this  cell  again  because  it  can  take  a  while  to  get  their  best  five  to  seven  predictor  models.
+ But  you  can  see  from  the  results  here  that  if  we  want  to  get  their  best  five,  six  or  seven  predictor  model,  we  need  to  process  to  fit  more  than  10k,
+ 27k  and  50k  models  to  get  the  best  six,  seven  and  eight  predictor  models.  And  then  it  can  take  up  to  a  minute  to  finish  running.
+ So  it's  definitely  very  time  consuming.  And  then  after  we  run  this  cell,  we  get  the  model  best.
+ best.  And  then  here,  the  first  column  is  the  best  research  sum  of  square  for  the  best  one  predictor,  true  predictor,  true  predictor,
+ up  to  seven  predictor  model.  And  then  the  second  column  here  saves  the  best  model,  best  fit  model.  So  to  make  this  more  concrete,  we  can  look  at  what  is  the  best  true  predictor  model.
+ So  here,  in  this  model's  best,  we  locate  the  best  true  predictor  model,  and  then  we  output  the  summary  table.
+ So  we  can  see  from  here  that  the  best  true  predictor  model  has  the  predictor  hits  and  CRBI.  And  then  we  get  the  R -square,
+ which  is  like  66%.  And  then  we  can  also  get  the  AIC -BIC  score  from  it.  So  this  is  for  the  best  true  predictor  model.
+ So  a  simple  exercise  is  to  show  the  best,  19  predictor  model.  So  there's  actually  only  one,  because  we  have  19  predictors  in  total.  So  the  best  19  predictor  model  is  to  increase  everything.
+ And  then  we  can  see  that  the  R -square  is  a  bit  higher  than  the  R -square  for  the  best  true  predictor  model,  which  is  as  expected,  because  we  use  more  predictors.
+ And  then  the  next,  we  can  extract  the  R -square  by  calling  the  R -square.  So  we  can  also  get  the  R -square  from  best  one  to  best  seven  predictor  model.
+ So  we  can  see  that  it  seems  like  the  R -square  increases  with  the  number  of  predictors.  And  then  the  adjusted  R -square  is  the  highest  when  we  use  the  best  seven  predictor  model.
+ And  then  for  the  model  summary,  we  also  have  the  BIC  BIC  and  AIC  score.  So  we  can  extract  that  information  and  make  a  plot  for  the  best  1  to  7 -predictor  model.
+ So  that  is  what  we  do  in  this  cell.  We  make  a  plot  for  the  received  sum  of  squares,  the  adjusted  R -square,
+ AIC  and  BIC.  So  we  can  see  that  it  seems  like  for  adjusted  R -square  and  AIC,
+ we  select  the  7 -predictor  model.  And  then  for  BIC,  we  select  the  6 -predictor  model.  And  then  we  call  that  in  our  lecture,
+ we  talk  about  the  distinction  between  AIC  and  BIC.  So  in  the  AIC,  we  adjust  by  the  number  of  predictors  and  then  the  coefficient  in  front  of  it  is  two.
+ But  for  BIC,  we  also  adjust  for  the  number  of  predictors  and  then  their  coefficients  is  log  N.  So  as  long  as  the  symbol  of  size  is  larger  than  seven,
+ so  BIC  always  put  a  larger  realization  on  the  number  of  predictors.  So  BIC  tends  to  select  a  model  with  a  smaller  number  of  predictors,
+ which  is  also  confirmed  here.  As  we  can  see  that  the  BIC  selects  their  6 -predictor  model  while  the  AIC  selects  their  7 -predictor  model.
+ So  this  is  for  the  best  subset  selection.  And  then  the  next  is  to  implement  the  forward  and  backward  selection.
+ So  for  the  forward  selection,  we  also  write  a  function  called  forward.  So  within  in  this  function,  so  what  we  do  is  that  we  get  all  the  numbers  remaining  predictors  in  X  that  is  not  included  in  their  input  predictors.
+ So  the  idea  is  that  we  have  all  the  predictors  in  X  and  then  we  pass  in  the  current  predictors  in  the  model  and  then  we  get  the  remaining  predictors.
+ Say  if  we  want  to  identify  the  best  true  predictor  model,  when  now  we  only  have  one  predictors,
+ so  what  it  does  is  we  first  pass  in  the  one  predictor  and  then  we  get  the  remaining  18  predictors  and  then  we  find  within  this  18  remaining  predictors  which  one  should  be  added  to  their  current  best  one  predictor  model  so  that  we  can  get  the  best  true  predictor  model.
+ So  that  is  the  logic  for  this  function  where  in  the  remaining  predictors  we  write  a  forward  loop  and  then  fit  a  model  using  this  process  subset  where  we  incurred  their  existing  predictors  plus  this  additional  candidate's  predictor  and  then  we  get  their  model  fitted  model  and  they  receive  some  of  the  squares.
+ Then  the  next  is  we  select  the  model  with  the  lowest  residual  sum  of  squares  and  then  this  is  what  we  call  as  the  best  model  and  then  we  count  how  long  it  takes  to  to  iterate  through  all  the  remaining  predictors  to  get  the  best  model  and  then  we  return  the  best  model.
+ This  is  what  we  do  for  this  forward  selection  and  then  we  can  iterate  through  the  best  one  predictor  model  to  best  19  predictor  models  using  this  forward  selection.
+ So  you  can  see  that  it's  actually  pretty  quick  for  this  course  to  identify  all  the  best  model  for  all  the  possible  numbers  of  the  predictors.
+ So  when  we  want  to  find  the  best  one  predictor  model  we  need  to  process  19  models  in  total  because  each  of  the  19  predictors  we  need  to  compute  to  fit  the  model  and  compute  the  reseal  sum  of  squares.
+ But  once  we  have  this  one  predictor  model  to  get  the  true  predictor  model  we  iterate  through  all  the  remaining  18  predictors  and  identify  which  predictor  has  the  lowest  reseal  sum  of  squares.
+ So  in  this  step  we  only  need  to  fit  18  models  and  also  for  the  three  predictor  model  conditional  on  the  two  predictors  selected  we  iterate  through  the  remaining  17  predictors  and  find  which  predictor  added  can  most  reduce  the  reseal  sum  of  squares.
+ So  in  this  step  we  fit  17  models  in  total  so  that  we  follow  the  same  logic  and  we  can  count  the  how  many  models  we  need  to  fit  if  we  want  to  find  the  best  four  predictor  to  best  19  predictor  model.
+ And  then  the  next  is  we  can  see  what  is  the  best  model  selected  by  the  forward  selection  for  the  best  one  predictor  and  two  predictor  model.  So  for  the  best  one  predictor  model  we  can  see  that  the  predictor  selected  is  the  number  of  hits  hits.
+ And  then  for  the  best  true  predictor  model,  the  predictor  selector  is  hits,  and  the  additional  one  is  the  CRBI.  So  for  these  two  predictors,
+ we  can  see  that  it's  the  same  as  the  true  predictors  selected  by  their  best  subset  selection.  So  actually  we  can  do  the  same  exercise  for  the  best  six  predictor  models  selected  by  their  best  subset  selection  and  forward  selection.
+ And  then  we  can  see  that  the  top  panel  is  for  the  best  subset  selection  and  then  the  bottom  panel  is  for  the  forward  selection.
+ And  if  we  compare  the  coefficients  and  the  variables,  so  they  are  exactly  identical.  So  actually  for  this  data,  the  best  one  variable  to  six  variable  models  are  identical  between  their  best  subset  and  forward  selection.
+ So  the  next  is  to  implement  the  backward  selection.  The  idea  of  the  backward  selection  is  that  we  start  from  the  19  predictor  model  and  then  we  remove  the  least  used  four  predictors  one  by  one.
+ Using  the  criteria  that  the  removed  predictor  has  the  smallest  impact  on  the  residual  sum  of  squares.
+ So  to  do  that,  we  write  a  backward  function  here.  And  then  the  idea  is  that  we  iterate  through  all  the  predictors  and  then  we  find  a  subset  of  the  predictors  with  one  predictor  less  than  the  current  number  of  predictors.
+ So  basically  in  this  iteration,  then  we  remove  one  predictor  at  one  time.  And  then  we  see  which  predictor  removed  would  have  lowest  impact  on  the  result  sum  of  squares.
+ In  the  sense  that  it  has  the  least  increase  in  the  result  sum  of  squares.  So  we  select  the  model  with  one  predictor  less,
+ but  has  the  lowest  result  sum  of  squares.  And  then  this  is  what  we  call  as  the  best  model  and  we  return  this  best  model.  So  we  can  use  this  function  and  then  we  iterate  all  the  possible  number  of  predictors.
+ And  we  start  from  the  19  predictor  model  and  then  we  find  the  18  predictor  model,  so  17  predictor  model  up  to  the  one  predictor  model.  So  here,
+ if  we  run  this  block  of  calls,  then  we  can  see  that  if  starting  from  the  19  predictor  model,
+ if  we  want  to  get  the  18  predictor  model,  then  we  need  to  fit  19  models  in  total.  So  for  each  model,  we  remove  one  predictor  from  the  19  predictors.
+ So  there  are  19  possible  choices  and  then  we  need  to  fit  19  models  in  total.  And  similarly  for  the  next,  if  we  want  to  find  the  17  predictor  model,
+ then  we  start  from  the  18  predictor  model  and  then  we  try  to  remove  each  one  from  the  18  predictors  and  see  which  one  has  the  lowest  impact  on  their  RSS.
+ So  in  this  step,  because  we  have  18  predictors  to  start  with,  so  we  need  to  fit  18  models  in  total.  So  that  is  the  logic  for  the  remaining.  And  then  here  we  finish  finding  the  18  to  one  predictor  models.
+ So  the  next  is  we  compare.  the  seven  predictor  models  selected  by  the  BASC  subset  selection,
+ forward  and  backward  selection.  So  what  is  interesting  here  is  that  once  we  reach  to  the  BASC  seven  predictor  model,  we  can  see  some  difference  between  these  three  subset  selection  approaches.
+ So  this  is  for  the  BASC  subset  selection.  We  show  the  model,  the  parameter  coefficient  estimates.  And  this  is  for  the  forward  selection  and  then  for  the  backward  selection.
+ So  if  we  compare  these  three  sets  of  results,  we  can  see  that.  So  for  the  forward  selection,  it  incurs  the  league  not,
+ but  the  BASC  subset  selection  does  not.  And  then  the  BASC  subset  selection  incurs  this  variable  CHM  run,  but  the  forward  selection  does  not.
+ And  then  further,  if  we  compare  with  the  backward  selection,  so  for  the  backward  selection,  it  does  not  incur  the  league  N.  And  then  the  backward  selection  incurs  the  variable  C  walks  that  does  not  incur  in  their  forward  selection.
+ And  then  if  we  compare  their  best  subselection  and  backward  selection,  so  C  walk  is  in  backwards,  but  not  in  BASC  subset.  And  then  the  variable  CHM  run  is  in  the  BASC  subset,
+ but  does  not  incur  this.  It's  not  incurred  in  their  backward  selection.  So  you  can  see  that  if  we  select  up  to  seven  predictors,  we  can  see  some  difference  between  these  three  methods.
+ So  the  takeaway  message  here  is  that  the  forward  and  backward  selection  is  more  computationally  efficient  even  though  it  may  not  identify  the  best  possible  combination  of  the  predictors.
+ But  usually  the  gap  is  not  that  big.  So  that  is  how  to  implement  the  subset  selection.  And  I  hope  this  could  be  useful  for  you  guys  to  complete  the  subset  selection  question  in  homework  2.
+ And  then  the  next  is  to  see  how  we  can  implement  the  lasso  and  reach  in  Python.  So  that  is  for  the  next  notebook.
+ So  in  this  notebook,  then  we  incurred  the  standard  packages  here.  And  then  we  also  use  the  same  data  to  predict  the  base  for  players  salary.
+ So  similar  as  the  previous  exercise,  we  remove  the  players  without  the  salary  information.  And  then  here  we  use  different  methods  to  construct  the  dummy  variables  when  the  variables  in  the  original  dataset  is  categorical.
+ So  the  way  to  do  that  is  we  can  use  the  models  spec  from  the  is .models  library.
+ And  then  in  this,  we  can  then  pass  in  all  the  columns  except  for  the  outcome  salary.  And  then  we  call  the  fit  and  pass  in  the  current  data  frame  with  all  the  players  with  the  salary  information.
+ Then  we  call  the  fit  transform.  And  then  we  drop  the  intercept  term.  So  in  this  case,  we  can  also  convert  all  the  categorical  variables  into  their  dummies.
+ So  this  function,  this  approach  is  the  same  job  as  what  we  do  here  where  we  explicitly  construct  the  dummies  for  those  categorical  variables.
+ So  for  this  approach,  we  don't  have  to  specify  which  variables  are  categorical.  So  if  you  find  this  to  be  more  convenient,  then  you  can  also  use  this  in  your  homework.
+ And  then  the  next  is  to  implement  the  reach  regression.  So  for  the  reach  regression,  I  recommend  this  approach  is  that  we  first  standardize  the  variables.
+ And  then  the  idea  is  that  the  coefficients,  once  we  standardize  the  variables  are  comparable  with  one  another.  So  the  shrinkage  parameter  lambda  can  work  in  the  same  way  for  all  the  variables.
+ So  that  is  more  recommended.  Now  we  can  then  avoid  the  scenario  where  some  variables,  like  some  variables  is  much  smaller  than  some  of  the  other  variables.
+ And  then  for  the  variables  with  the  smaller  scale,  the  coefficient  may  be  larger  and  we  will  run  less  so  and  reach.  This  variable  with  the  smaller  scale,
+ the  coefficient  may  be  penalized  more  and  that  is  undesired.  So  to  avoid  this  issue,  we  want  to  pre -process  the  variables  so  that  they  have  mean  0  and  variance  1.
+ one.  Therefore,  this  rich  regression,  what  we  do  is  we  use  the  SKL  elastic  net  to  fit  both  the  lasso  and  bridge.
+ Now,  we  have  another  function  which  is  called  the  SKL  elastic  net  CV,  which  can  help  us  select  the  optimal  tuning  parameter  lambda.
+ Then  here,  so  for  the  lambda,  we  specify  it  in  this  way.  The  whole  idea  is  that  the  lambda  can  cover  as  large  range  as  possible.
+ So  in  there,  power  is  equally  spaced.  Then  we  devise  by  the  standard  deviation  of  the  y,
+ the  salary,  so  that  the  lambda  accounts  for  the  scale  of  the  y.
+ Then  we  pass  in  the  x,  which  is  the  standardized  version  of  the  x,  passing  in  y  and  then  if  we  specify  out  one  ratio  as  zero,
+ then  this  means  it's  the  rich  regression.  As  a  comparison,  if  we  specify  out  one  ratio  as  one,  then  this  is  lasso.
+ So  for  this  Alpha's  argument,  we  pass  in  the  lambdas,  which  are  the  grid  of  the  tuning  parameter.
+ So  here,  we  search  a  hundred  different  lambdas  in  total,  and  then  this  solution  array  connections,  the  rich  regression  coefficients  for  each  possible  lambda  value.
+ So  here  we  take  the  log  so  that  after  we  take  the  log,  all  the  lambdas  are  equally  spaced.  And  then  we  can  plot  the  coefficients  for  each  possible  lambda.
+ And  then  here  the  XSS  is  the  miner's  log  lambda.  So  in  this  case,  then  all  the  lambdas  can  be  shrink  into  the  same  range.
+ And  then  for,  so  how  to  read  this  figure,  for  the  right  most  case,  it's  the  case  where  the  lambda  is  very,
+ very  close  to  zero.  And  then  the  coefficients  on  the  rise  would  be  very  similar  to  the  least  square  coefficients.  And  then  for  the  left  most  points,
+ then  that  is  the  case  where  the  lambda  is  very  big.  So  we  have  a  huge  shrinkage  on  the  coefficient  and  all  the  coefficients  are  getting  very  close  to  zero.
+ So  that's  how  we  read  this  figure.  And  for  different  curves  at  the  noser,  the  coefficient  path  for  a  specific  variable.
+ And  then  the  next  is  we  can  look  at  their  coefficients  for  a  specific  lambda  value.  And  we  just  randomly  find  one,
+ which  is  at  index  39.  And  then  for  this,  the  lambda  value  is  like  25 .53.  And  then  we  can  get  all  the  rich  regression  coefficients.
+ coefficients.  We  can  also  compute  what  is  the  corresponding  beta  value,  the  outer  norm  for  this  beta  vectors.  So  the  outer  norm  is  24 .17.
+ So  to  put  this  into  context,  we  can  also  compare  the  outer  norm  for  the  coefficients  when  the  lambda  is  smaller.
+ Say  the  lambda  is  like  1  to  4,  which  is  100  times  smaller  than  this  one.  Then  in  this  case,  when  lambda  is  much  smaller,  then  we  have  a  smaller  realization  for  the  beta  for  the  coefficients.
+ And  then  in  this  case,  you  can  see  that  the  outer  norm  for  beta  is  way  bigger,  it's  160  as  compared  to  the  previous  case  where  the  outer  norm  is  just  24.
+ So  a  larger  lambda  would  lead  to  smaller  coefficients.  So  that  is  their  takeaway  from  this  comparison.
+ And  then  for  this  lambda,  it  should  be  specified  by  their  user.  And  we  have  learned  in  class  that  a  good  approach  to  specify  to  find  a  good  lambda  is  by  cross -validation.
+ And  then  to  convert  cross -validation,  what  we  do  here  is  we  need  to  first  import  a  few  packages.  So  we  need  to  import  this  SKM,
+ the  model  selection,  so  that  we  can  specify  the  K -fold  selection.  So  here  we  are  interested  in  the  5 -fold  selection.  And  then  definitely  you  can  change  the  K  from  5  to  10  to  implement  their  10 -fold  cross -validation.
+ So  if  we  want  to  implement  the  cross -validation,  we  also  need  to  use  two  other  functions.  One  is  the  standard  scalar.
+ So  for  this,  it's  just  an  automatic  approach  to  normalize  their  features.  And  then  we  use  the  sk -learn .pipeline.
+ So  this  pipeline  is  a  function  of  where  it  can,  which  can  help  us  automatically  implement  their  cross -validation.
+ And  then  for  the  reach,  what  we  do  is  we  use  the  sk -learn .elastic -next -cv.  And  we  specify  all  the  lambdas  we  want  to  search.
+ So  these  lambdas  are  identical  to  the  lambdas  in  our  previous  exercise.  And  then  the  next  is  the  L1  ratio  is  equal  to  zero.  So  this  is  the  case  for  the  reach  regression.
+ If  we  specify  L1  ratio  as  one,  then  that  is  less  so.  And  then  cv  specifies  there  are  the  k -folds,  which  is  the  output  from  the  skm .k -folds.
+ And  then  we  have  this  scalar  where  we  specify  their  demean  and  serialize  as  true.  And  then  we  pass  the  reach  cv  and  scalar  into  this  pipeline  and  then  we  call  the  fit.
+ Then  we  can  get  their  optimal  lambda  from  five -fold  cross -validation.
+ And  then  we  can  visualize  the  result  from  the  pipeline.  So  what  we  do  here  is  we  plus  their  cross -validation  mean  square  arrow  for  each  possible  lambda.
+ lambda.  So  in  the  right  most  case,  that  is  for  the  smallest  lambda,  for  the  left  most  case,  that  is  for  the  largest  lambda.  And  then  we  want  to  select  the,  find  the  lambda  would  be  the  minimum  cross  validation  arrow.
+ So  here  what  we  get  is,  so  this  is  the  optimal  lambda  selected.  And  we  have  this  cross -validated  arrow  and  the  arrow  bar  is  calculated  from  the  case  of  cross -validation.
+ And  then  the  vertical  line  denotes  the  optimal  lambda  selected  by  the  cross -validation,
+ which  has  the  smallest  cross -validation  arrow.  And  then  we  can  also  output  the  coefficients  for  lambda  in  this  case  by  calling  the  star  coefficients.
+ And  then  we  can  map  this  to  the  features  here.  And  then  we  can,  the  features  here,  and  then  we  can  get  to  know  the  coefficient  for  each  variable.
+ So  this  is  for  the  reach  regression,  for  the  last  one  that  is  pretty  similar.  The  only  difference  is  that  we  specified  our  ratio  as  one.
+ And  for  the  cross -validation,  their  calls  is  pretty  much  similar  to  the  previous  case.  But  the  only  difference  is  that  the  two  differences,  the  first  is  we  have  a  different  hour  ratio.
+ And  then  the  second  one  is  for  last  cell,  we  can  just  specify  the  number  of  alphas,  which  is  the  number  of  lambdas  we  want  to  do  the  cross  validation.
+ So  here  we  just  we  can  specify  100.  But  for  reach  regression,  we  need  to  manually  pass  in  the  lambdas  we  want  to  do  the  cross  validation.  So  we  cannot  just  simply  specify  there  the  n  alphas  as  100  and  run  their  reach  regression.
+ That  doesn't  work.  So  we  need  to  specify  the  vector  of  the  lambdas  we  want  to  do  the  cross  validation  for  reach.  But  for  last  cell,  it's  more  convenient.
+ And  then  besides  these  two  points,  the  others  are  pretty  much  the  same.  So  we  call  the  pipeline  pass  in  the  scalar,
+ which  we  want  to  do  their  standardization.  And  then  this  last  cell  CV  is  what  we  have  from  the  outputs  from  the  previous  function.
+ And  then  we  fit  the  pipe  pipe  CV.  And  then  we  can  get  the  optimal  lambda  from  cross  validation  of  last  cell.  And  then  the  next  is  we  can  also  plot  their  coefficients  from  last  cell.
+ And  then  we  call  this  SKL  also  path.  And  then  we  can  show  there's  the  last  coefficients.  So  you  can  see  here  that  also  the  x  axis  is  minus  lambda.
+ So  when  the  lambda,  so  for  the  right  part,  the  lambda  is  very  small.  And  then  the  coefficient  is  similar  to  the  least  square  coefficients.
+ And  for  the  leftmost  case,  then  the  lambda  is  very  big.  And  then  we  have  lots  of  shrinkage.  So  you  can  see  here,
+ the  XSS  has  a  different  range  than  the  previous  case  where  we  search  for  a  larger  range.  So  if  we  want  the  last  cell  to  also  search  for  a  larger  range,
+ then  we  can  also  manually  specify  the  lambda  we  want  to  do  the  cross -validation.  But  here,  we  can  still  observe  the  interesting  pattern.
+ So  for  last  cell,  we  can  shrink  some  of  their  coefficients  to  exactly  0.  Like  here,  the  yellow  one  is  exactly  0.  And  that  is  unique.
+ So  that  is  the  feature  for  last  cell,  but  not  for  a  range.  And  then  the  next  is  we  can  see  that  some  of  their  coefficients  are  not  monotonic.  So  as  the  lambda  decreases  from  the  left  to  the  right,
+ some  of  the  coefficients  make  first  decrease  and  then  increase.  So  it  works  for  this  orange  one  and  also  works  for  this  light  blue  one.  So  the  coefficients  is  not  monotonic  with  the  lambda.
+ And  then  next,  we  can  also  plot  the  cross -validation  arrow  for  all  the  possible  lambdas  and  plot  the  optimal  lambda  in  last  cell.
+ So  the  optimal  lambda  here  is  like  3 .14.  So  here,  we  do  the  cross -validation.  So  this  vertical,  the  solid  line  denotes  the  cross -validation  arrow.
+ And  then  the  arrow  bar  is  computed  from  the  five -fold  cross -validation.  And  then  this  black  one  is  the  one  with  the  lowest  cross -validation  arrow.
+ And  then  the  lambda  value  is  3 .14.  And  then  we  can  also  plot  the  coefficients  by  choosing  the  optimal  choice  of  the  lambda.
+ So  that  is  the  retunes  lambda  dot  coefficients.  And  then  we  can  get  the  optimal  coefficients.  So  we  can  see  that  here  some  of  the  coefficients  are  exactly  0.
+ So  in  this  case,  the  lasso  performs  a  variable  selection,  and  these  variables  are  not  selected  by  this  optimal  lambda.
+ So  basically,  that  is  all  for  the  realization.  And  then  if  you  want  to  implement  the  elastic  net,  the  only  change  that  you  need  to  make  is--  so  for  this  L1  ratio,
+ then  you  want  to  specify  a  different  value  than  0  and  1.  You  may  want  to  select  a  value  that  is  between  0  and  1,
+ like  0 .3,  0 .7.  And  then  a  more  complicated  thing  is  how  to  do  the  cross -validation  when  the  L1  ratio  could  vary.
+ So  basically,  this  ratio  also  needs  to  be  cross -validated.  So  if  you're  interested,  then  you  can  also  try  to  implement  the  cross -validation  for  elastic  net,
+ but  that  is  not  required  for  their  second  homework.  So  I  hope  this  example  calls  can  help  you  to  finish  their  second  homework.
+ So  this  Zoom  lecture  is  a  bit  short.  And  then  I  want  to  leave  you  some  time  to  also  try  to  run  this  course  by  yourself  and  try  to  digest  this  course.
+ And  I  also  want  to  give  you  some  time  to  prepare  for  the  presentation  on  Wednesday.  So  I  will  send  an  announcement  about  the  instruction  for  the  presentation  by  the  Monday  lecture  time.
+ And  then,  so  please  check  the  cameras  for  the  instruction.  And  that's  all  for  this  lecture.
+ Let  me  know  if  you  have  any  questions.  Thank  you  very  much.
