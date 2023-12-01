@@ -1,0 +1,231 @@
+ Hi  everyone,  I  hope  you  all  had  a  wonderful  weekend.  Today,  we  are  going  to  learn  LDA  and  QDA.  We  are  going  to  learn  how  to  estimate  the  parameters  in  LDA  and  QDA.
+ And  we  are  going  to  learn  the  zero  boundaries  of  LDA  and  QDA.  Both  LDA  and  QDA  are  examples  of  the  generative  methods.
+ So  what  are  the  generative  methods  as  we  learned  in  our  last  lecture,  instead  of  directly  modeling  the  probability  of  class,
+ a  class,  given  the  features  for  the  generative  methods,  we  model  the  data  generating  process  and  then  we  use  the  data  generating  process  to  help  us  make  their  decision  and  to  help  us  predict  their  labels.
+ And  more  specifically  for  the  classification  problem,  for  the  generative  methods,  what  we  do  is  that  we  first  model  the  probability  of  their  features.
+ Like  in  our  IRIS  example,  in  our  last  lecture,  we  modeled  the  distribution  of  the  several  length,
+ several  width,  petal  length  and  petal  width  for  each  IRIS  type.  That  is  the  probability  of  X  given  the  Y.  We  also  model  the  probability  of  each  class,
+ each  type  of  IRIS.  And  then  we  apply  the  Bayes  theorem  to  convert  the  probability  of  features  given  each  class  and  the  probability  of  class  to  the  probability  of  class,
+ okay,  given  their  label.  And  then  we  use  the  probability  of  a  class,  given  label  to  help  us  make  classification.
+ And  then  at  the  end  of  last  lecture,  we  briefly  mentioned  how  to  estimate  the  probability  of  the  features  given  each  IRIS  type.
+ and  the  probability  of  each  error  type,  y  equals  to  k.  In  this  lecture,  we're  going  to  learn  this  in  detail.
+ So  first,  let's  start  from  the  simple  one  where  we  want  to  estimate  the  probability  of  each  class.
+ We  use  pi  k  to  denote  the  probability  of  class  k.  And  then  the  estimation  of  the  probability  is  pretty  simple.
+ We  just  count  the  fraction  of  the  training  samples  that  are  in  class  k.  And  then  basically  this  is  to  count  how  many  labels  in  class  k.
+ And  we  divide  by  the  total  number  of  samples.  In  our  iris  data,  we  have  50  samples  from  each  of  the  three  classes,
+ a  viscala,  the  tosa,  and  the  genica.  So  given  this  information,  then  the  probability  of  each  class  is  equal  to  1 /3,
+ which  would  be  50  divided  by  the  total  number  of  samples,  which  is  150.  So  then  the  pi  k  is  equal  to  1 /3  for  each  of  the  three  types.
+ So  the  estimation  of  their  class  probability  is  simple.  The  more  challenging  part  is  how  can  we  estimate  the  probability  of  the  features  given  each  error  type.
+ And  for  LDA,  then  we  model  the  probability  of  features  given  iris  time.
+ by  a  multivariate  normal  distribution  with  mean  mu  k  and  the  corresponding  as  sigma.  We  have  four  features  in  total.
+ So  now  let's  look  at  how  we  can  estimate  the  mean  of  the  simple  length,
+ simple  width,  simple  petal  length  and  petal  width.  Consequently,  the  way  to  do  that  is  we  calculate  the  simple  average  of  each  of  the  four  features  using  the  samples  for  each  class.
+ So  as  an  example  for  the  SUPOSA,  then  what  we  do  is  we  take  all  the  50  samples  of  type  SUPOSA  and  then  we  calculate  their  average  super  length,
+ average  super  width,  average  petal  length  and  average  petal  width.  Graphically,  this  would  just  be  equal  to  the  black  dots  in  the  bus  plot  for  each  one  for  SUPOSA.
+ And  then  mathematically,  what  we  do  is  we  take  all  the  samples  of  SUPOSA  and  here  SUPOSK  is  equal  to  SUPOSA  and  then  we  calculate  their  simple  average  of  this  50  samples  features.
+ And  then  the  more  challenging  one  is  how  can  we  estimate  their  their  covariance  matrix  in  their  multivariate  normal  distribution.
+ They  record  that  in  the  LDA,  we  make  a  critical  assumption  that  their  covariance  matrix  of  their  features  is  equal  for  all  the  three  types.
+ And  then  in  this  covariance  matrix,  the  diagonal  terms  are  their  variance  of  each  of  the  four  features,  and  the  off -diagonal  terms  are  equal  to  their  covariance  between  any  two  features.
+ And  then  we  assume  that  the  variance  and  covariance  are  identical  across  all  their  three  classes.  And  then  the  first  question  is  how  can  we  estimate  just  one  single  covariance  matrix  across  the  three  classes?
+ And  another  question  is  what  if  their  covariance  matrix  are  different  across  classes?
+ So  for  these  two  questions,  how  can  we  solve  that?  And  then  to  consider  these  two  questions,  let's  first  look  at  the  second  one.
+ How  can  we  estimate,  so  what  if  their  covariances  are  different  across  the  three  classes?  So  after  we  address  the  second  question,  then  we  can,
+ it's  easier  for  us  to  address  the  first  question,  how  can  we  estimate  just  one  single  covariance  matrix  across  those  three  classes?  So  to  address  the  second  question,
+ what  if  their  covariance  matrix  are  different  across  the  three  classes,  are  they  different  between  the  thyrus  apoptha  and  vesicolor  and  virginica?
+ So  in  that  case,  then  it's  possible  to  consider  another  kind  of  method.  method  that  is  the  QDA.  And  then  in  the  QDA,  then  we  allow  the  current  matrix  between  the  features  to  be  different.
+ So  in  this  case,  then  we  index  the  current  matrix  by  k,  which  means  we  allow  the  sigma  k  to  vary  across  each  of  the  three  types.
+ So  how  can  we  estimate  the  current  matrix  of  this  thyracetopsa?  The  idea  is  that  for  the  diagonal  terms  of  this  current  matrix,
+ we  just  calculate  the  covariance  of  each  of  the  four  features  using  the  samples  of  thyracetopsa  only.
+ And  then  for  the  off  diagonal  terms,  the  covariance  between  any  two  features,  then  we  also  use  thyracetopsa  samples  only.
+ Mathematically,  what  we  do  is  that  we  suppose  we  want  to  estimate  the  current  matrix  of  thyracetopsa.  Then  what  we  do  is  that  we  take  50  thyracetopsa  samples  and  then  we  calculate  their  deviation  from  their  mean  features.
+ The  mean  features  is  identical  to  the  mu  k  we  estimated  just  now.  And  then  we  take  this  difference  and  then  we  take  its  transpose.
+ So  in  this  case,  as  we  have  four  features,  when  we  use  this  operator,  we  multiply  the  difference  between  each  sample's  feature  and  the  mean  and  we  multiply  by  its  inverse,
+ then  we  get  a  four  by  four  matrix,  which  would  be  the  variance  current  matrix  of  thyracetopsa.  And  then  we  sum  this  object  across  all  the  Satosa  samples.
+ And  then  we  adjust  by  their  sample  size.  Here,  we  adjust  by  nk  minus  1.  And  in  the  Satosa  case,
+ where  nk  is  50,  so  we  adjust  by  1  over  50  minus  1,  which  is  1  over  49.  And  then  we  get  their  sample -currence  matrix.
+ And  then  in  R  or  in  Python,  we  can  use  the  commands,  covariance,  to  compute  their  current  matrix,
+ given  their  samples  of  their  features.  And  then  here,  this  picture  shows  their  samples  of  Satosa.
+ And  the  dots  shows  their  feature  value  for  each  observation.  And  then  based  on  these  dots,
+ we  can  get  a  rough  sense  of  how  these  four  features  are  correlated  with  one  another.  So  basically,  you  can  see  that  between  the  sample  land  and  the  petal  land,
+ it  seems  that  if  the  sample  land  is  larger,  then  the  corresponding  petal  land  is  larger.  And  also,
+ for  the  sample  land  and  sample  width,  it  seems  like  if  the  sample  land  is  larger  on  the  library  gym  and  the  petal  width  is  also  larger.  So  those  are  all  the  features.
+ are  shifted  to  this  northeast  diagonal  direction.
+ So  basically  you  can  see  that  it  seems  like  these  features  are  positively  correlated  with  one  another.  And  if  we  look  at  their  covariance  matrix,
+ and  indeed  we  confirm  that  you  can  see  that  all  those  numbers  are  positive,  not  only  the  diagonal  terms,  the  variance  are  all  positive,
+ and  the  off  diagonal  terms  are  also  positive,  which  means  the  correlation  between  any  two  features  is  positive.
+ So  we  can  do  that  for  sepalza,  and  we  can  repeat  this  procedure  for  vesicolor.  We  only  take  vesicolor  samples,
+ and  then  we  use  their  same  procedure.  We  take  the,  for  each  observation  of  vesicolor,  we  calculate  the  difference  between  vesicolor's  feature  value  and  its  estimated  mean,
+ and  we  multiply  by  its  transpose.  We  sum  over  all  the  samples  of  vesicolor,  and  then  we  adjust  by  one  over  the  symbol  size  minus  one  to  get  the  various  transformations  of  vesicolor.
+ And  then  we  can  also  see  that  based  on  the  feature  value  of  the  vesicolor  samples,  it  seems  like  if  one  feature  is  larger,
+ the  other  features  are  also  larger.  These  features  are  positively  correlated.  This  can  also  be  confirmed  by  this  variance -currency  matrix  computed  from  the  vesicolor  samples.
+ All  the  numbers  here  are  positive.  And  then  interesting  observation  is  that  if  we  compare  the  variance -currency  matrices  of  vesicolor  versus  their  supposers,
+ you  can  see  that  the  variance  of  simple  length  is  larger  than  the  variance  of  suppo  length  for  supposa.  And  then  if  we  look  at  other  features  like  petal  length  and  petal  width,
+ the  variance  of  supposa  is  smaller  than  that  of  the  vesicolor.  So  basically  this  shows  that  their  vesicolor  has  a  larger  variance  and  covariance  as  compared  to  the  samples  of  supposa,
+ which  can  then  be  considered  as  a  useful  information  if  we  want  to  use  the  QDA  to  separate  between  two  classes.
+ So  far  we  have  talked  about  what  if  the  variance -currency  matrix  is  different  across  classes,  and  then  we  still  haven't  addressed  the  question  that  if  the  variance -currency  matrix  is  assumed  to  be  identical  across  the  classes,
+ then  how  can  we  estimate  just  one  single  variance -currency  matrix  across  classes,  which  is  an  important  object  to  be  estimated  in  LDA.  In  fact,
+ the  estimation  of  the  variance -currency  matrix  in  LDA  uses  the  object  that  is  estimated  from  QDA.
+ So  here,  basically,  we  do  the  same  thing  as  QDA.  We  estimate  the  variance  current  matrix  for  each  class,
+ and  then  we  average  them  together  across  the  three  classes.  So  how  do  we  average  them?  So  we  weight  by  roughly  the  fraction  of  the  sample  size  in  each  class.
+ So  in  our  iris  example,  then  what  we  do  is  we  estimate  the  variance  current  matrix  of  the  topsof,
+ basic  color,  and  virginica,  and  then  we  average  the  three  variance  current  matrix  by  the  weight  of  the  fraction  of  observations  in  the  topsof,
+ the  fraction  of  observation  in  basic  color,  and  the  fraction  of  observations  in  virginica.  And  then  we  adjust  by  the  degree  of  freedom.
+ Here,  as  there  are  50  samples  in  each  of  the  three  classes.  So  n,  topsof,  is  equal  to  m  virginica,  equals  n,
+ basic  color,  equal  to  50,  and  then  the  n,  the  total  sample  size  is  150.  So  basically,  in  our  example,
+ where  the  number  of  samples  in  each  class  is  identical,  then  the  estimated  variance  matrix  in  LDA  would  just  be  the  simple  average,
+ a  simple  average  of  the  variance  current  matrices  of  all  the  three  classes.  But  this  is  just  a  special  case  when  the  number  of  samples  is  identical  across  the  three  classes.
+ classes.  In  some  cases,  we  may  have  very  imbalanced  labels.  For  example,  in  the  credit  card  case,
+ credit  card  example,  most  of  the  customers  do  not  default  and  only  a  small  fraction  of  customers  default.  So  in  that  example,  then  when  we  estimate  just  one  single -current  matrix  in  LDA,
+ we  would  have  a  much  larger  weight  of  the  variance -current  matrix  for  the  non -default  customers  because  they  can't  as  a  much  larger  fraction  as  compared  to  the  default  customers.
+ So  basically,  this  is  just  to  measure  to  weight  different  variance -current  matrices  together.  And  if  one  sample,  one  class  has  a  much  larger  sample,
+ then  we  will  assign  a  higher  weight  in  this  calculation.  And  the  intuition  is  that  if  this  class  has  a  larger  sample,  then  we  think  that  the  estimation  precision  of  the  corresponding -current  matrix  is  better.
+ It  can  be  estimated  more  precisely,  which  would  then  be  more  useful.  So  we  assign  it  with  a  higher  weight  in  the  calculation  of  just  one  single  variance -current  matrix  in  LDA.
+ But  definitely,  if  we  look  at  the  samples  of  the  feature  value  for  LDA  and  QDA,  the  blue  dots  are,
+ as  opposed  to  observations,  the  virginica  samples  are  the  green  dots  and  the  mastic  color  are  the  purple  dots.
+ And  then  you  can  actually  see  that.  that  from  these  figures,  there  are  like  a  spectrum  between  the  supposed  and  the  other  two.
+ They  are  separated  and  they  seem  to  have  different  variants  and  different  mean  values.  So  the  variants  could  roughly  be  measured  by  the  width  of  the  oval  here  and  the  height  of  the  oval  here.
+ And  for  different  classes,  the  shape  of  the  oval  seems  to  be  different,  which  is  like  a  sign  that  the  variance  coherence  matrix  is  different.
+ And  then  the  LDA  is  definitely  making  a  strong  assumption  to  assume  that  their  coherence  is  identical  across  classes.
+ So  this  is  how  we  estimate  the  mean,  the  feature  mean  and  feature  coherence  in  the  multivariate  normal  distribution  in  the  probability  of  feature  given  each  class.
+ And  then  now  let  me  summarize  a  bit  of  LDA.  So  for  LDA,  basically  we,  for  each  class  k,
+ suppose  of  virginica  and  mastic  color,  we  model  the  feature  probability  given  each  class  by  a  multivariate  normal  with  mean  mu  k  and  variance  coherence  as  the  sigma.
+ And  both  are  estimated  from  the  procedures  that  we  described  just  now.  So  then  for  each  class,  we  have  one  normal  distribution  and  we  also  have  that  probability.
+ of  each  iris  type.  Then  how  can  we  use  the  LDA  to  make  prediction?  What  we  do  is  we  want  to  estimate  the  probability  of  each  type  given  the  iris  features.
+ So  we  come  with  a  new  sample  with  the,  with  the  four  feature  values,  the  simple  length,  simple  width,  petal  length,  petal  width.
+ And  we  want  to  use  this  feature  values  to  make  prediction  that  which  of  the  three  iris  types  is  the  most  likely  one.  So  to  answer  this  question,
+ based  on  what  we  have  in  the  LDA,  we  use  the  base  theorem  to  calculate  the  probability  of  iris  type,  each  iris  type,
+ given  the  value  of  four  features.  And  what  we  do  is  that  the  probability  of  class  K,  given  feature  value  is  equal  to  the  joint  divided  by  the  probability  of  the  features.
+ And  then  for  the  numerator,  we  can  write  it  as  the  probability  of  each,  of  class  K  multiplied  by  the  probability  of  feature  value  given  the  class  K.
+ So  for  the  denominator,  now  we  can  separate  the  denominator  as  the  sum  of  the  joint  across  the  three  iris  types.
+ And  for  each  iris  type,  type  J,  then  we  also  write  the  joint  of  the  feature  value  and  type  J  as  this  product  of  two  probabilities.
+ One  is  the  probability  of  feature  value.  value  given  type  J,  and  the  other  one  is  the  probability  of  the  type  J.
+ And  then  we  sum  over  the  three  J's,  the  three  classes  in  the  average  example.  So  now  you  can  see  that  in  LDA,
+ once  we  estimate  the  probability  of  feature  given  class  K  and  the  probability  of  each  class,  we  can  then  use  this  to  and  plug  this  into  this  blue  component,
+ and  then  we  can  obtain  the  probability  of  class  K  given  the  value  of  four  features.  The  next  would  be  to  compare  the  probability  of  each -averse  type  and  then  to  predict  an  averse  type  label  for  this  observation.
+ And  then  let's  also  have  a  summary  of  the  QDA.  So  for  QDA,  it's  pretty  similar.  The  only  difference  is  that  we  estimate  the  probability  of  the  feature  given  class  K  as  the  multivariate  normal  with  the  sigma  K.
+ And  then  we  plug  this  feature  probability  and  the  class  probability  into  the  blue  component,
+ and  we  obtain  the  probability  of  each -averse  type  given  the  feature  value.  So  once  we  have  the  probability  of  each  class  given  the  feature  value,
+ based  on  the  probability  of  each  class  given  the  value  of  four  features,  we  have  learned  in  our  Manley's  lecture,  we  can  apply  the  base  classifier  and  output  the  class  with  the  highest  probability.
+ And  this  procedure  can  minimize  the  misclassification  error  rate.  So  that  would  be  the  decision  rule.
+ And  we  also  introduce  a  concept  which  is  called  the  decision  boundary.  So  the  decision  boundary  means  this  is  the  set  of  X  where  the  probability  of  two  classes  are  identical.
+ So  what  does  that  mean?  Let's  look  at  a  graphical  example.  So  suppose  we  just  have  two  features,  X1,  X2,  and  then  we  have  in  this  classification  problem  we  have  three  classes,
+ the  yellow  one,  blue  one  and  the  green  one.  Here  there  are  dots  in  those  observations.  And  suppose  in  this  simulated  example  we  know  the  true  decision  boundary.
+ And  this  means  this  is  how  the  data  is  generated.  And  basically  if  there,  so  this  is  like,
+ this  is  computed  from  the  data  training  process.  And  this  shaded  yellow  color  is  the  region  where  the  probability  of  yellow  is  the  highest.
+ And  then  this  shaded  blue  region  is  the  region  where  the  probability  of  blue  is  highest.  and  green  is  the  region  where  the  probability  of  green  is  the  highest.
+ And  then  there,  uh,  for  the,  uh,  solid  blue  lines  here,  say,  for  this  one,  it  means  that  in  the  data  training  process,
+ the  probability  of  green  and  yellow  is  identical.  Uh,  and  on  this  line,  basically,  it's  equally  fine  to  make  the  prediction  as  yellow  and  as  green.
+ So  both  would,  um,  make  their  same  fraction  of  mistakes  when  we,  uh,  uh,  through  their,
+ uh,  classification  problem.  And  similarly  for,  uh,  this  solid  blue  line,  and  then  the  probability  of  green  and  their  blue  is  identical,
+ and  similarly  for,  uh,  this  one,  the  probability  of  yellow  and  the  blue  is  identical.  Uh,  an  important,  uh,  probability  that  we  need  to  consider  is  that  in  LDA,
+ uh,  what  is  the,  the  zero  bound  rate?  So  what  is  the  shape  of  their,  uh,  X,  um,  where,  uh,  on,  uh,
+ this,  uh,  set  of  X,  the  probability  of  any  two,  uh,  any  two  classes,  uh,  is  identical.  So,  and,  uh,
+ here,  an  important  probability  is  that  the  LDA  has  the  linear,  the  zero  bound  rates.  So  the  boundary  where  the  set  of  points  in  which  two  classes  do  just  well,
+ uh,  is,  uh,  a  linear  function  in  X.  So  this,  this,  uh,  the  zero  boundary  is,  uh,  to  separate  class  one,  uh,
+ class  two,  or  class  two,  or  class  one,  class  three.  And  on  the  other  hand,  the  probability  of  any  two  classes  is  identical.  boundary,  basically,  so  for  each  deserial  boundary,  basically,  it  means  that  the  probability  of  k  and  class  j  for  two  different  k  and  j  is  identical.
+ And  here,  this  shows  what  is  obtained  from  the  LDA  and  the  LDA  can  return  a  boundary  which  is,
+ and  on  this  boundary,  the  probability  of  green  and  yellow  is  identical  to  the  probability  of  blue  and  green  is  identical  to  the  probability  of  green  and  blue,
+ the  probability  of  yellow  and  blue  is  identical.  So  this  boundary  is  linear  in  x1  and  also  linear  in  x2,  that  is  what  we  meant  by  the  linear  deserial  boundary  on  this  boundary.
+ So  this  boundary  is  the  linear  function  of  x.  So  this  still,  so  graphically,  it  makes  sense  that  on  this  line,
+ the  probability  of  two  classes  are  identical  and  is  linear  in  x1  and  x2.  But  why  do  we  have  such  a  property?
+ So  why  does  the  LDA  have  the  linear  deserial  boundary?  So  let's  consider  two  classes,  k  and  L.
+ So  following  the  definition,  if  x  satisfies  that  the  probability  of  k  and  L  are  identical,
+ then  x  is  on  the  deserial  boundary  of  k  and  L,  where  we  are  in  difference  between  making  prediction  as  type  K  or  type  L.
+ So  if  X  satisfies  this  property,  then  we  can  take  the  log  of  both  probabilities.  And  it  should  be  this  X  also  satisfies  that  the  log  of  probability  equals  K,
+ given  the  features,  should  equal  to  the  probability  of--  log  probability  of  L,  given  their  feature  value.
+ So  taking  the  log  is  just  a  one -to -one  mapping.  And  then  we  can  see  what  is  the  set  of  X  that  can  satisfy  this  equation.
+ Basically,  an  important  observation  is  that  with  some  algebra,  we  can  show  that  the  log  of  probability  is  equal  to  some  constant  C  that  does  not  depend  on  the  class,
+ plus  a  delta  function  that  depends  on  class  K.  And  this  function  is  a  function  of  X,  which  varies  with  K.  More  specifically,
+ this  function  takes  such  a  form.  This  form,  basically,  it  depends  on  the  probability  of  class  K  and  also  depends  on  the  feature  mean  and  the  variance  matrix  of  the  features,
+ and  also  depends  on  the  X.  So  you  can  see  that  this  delta  is  a  linear  function  in  X.
+ So  if  the  delta  is  a  linear  function  in  X,  then  why  does  the  certain  boundary  to  be  linear?  So  here  is  the  logic.
+ The  certain  boundary  that  separates  class  K  and  L  is  a  linear  function  of  X.  x.  Then  we  can  use  this  priority  and  then  plug  in  to  the  set  of  x  that  satisfies  this  equality.
+ So  we  plug  the  c  plus  delta  k  of  x  into  this  object,  and  then  we  plug  c  plus  delta  l  of  x  into  this  object.
+ And  then  c  does  not  depend  on  class  k  and  l.  So  this  term,  the  c  can  be  cancelled  out,  this  constant  can  be  cancelled  out.  And  we  are  left  with  delta  k  of  x  minus  delta  l  of  x.
+ Then  we  can  plug  the  definition  of  delta  k  of  x  and  delta  l  of  x  into  this  difference.  And  with  some  algebra,
+ we  can  show  that  the  difference  is  equal  to  this  term.  Then  the  next  step  is  we  want  to  simplify  the  notation  a  bit.
+ We  aggregate  the  first  four  terms  into  c0.  So  c0  depends  on  class  k  and  class  l.
+ But  the  first  four  terms  does  not  depend  on  x.  And  then  we  have  a  second  term.  So  this  second  term  is  x  transpose  an  object  that  does  not  depend  on  x.
+ So  this  object  does  not  depend  on  x.  Sigma  inverse  times  mu  k  minus  mu  l  can  be  written  as  c1.
+ So  you  can  see  that  c0  plus  c1x  is  a  linear  function  in  x.  And  then  we  consider  what  are  the  x  such  that  c0  plus  c1  is  equal  to  0.
+ You  can  see  that  all  the  x  that  satisfy  this  equation.  is  linear  in  x,  which  explains  that  here  in  this  slide,
+ we  can  see  that  the  boundary  where  two  classes  are  identical  is  linear  in  x1  and  linear  in  x2.
+ Oh,  so  you  may  wonder,  how  can  we  obtain  the  expression  of  delta  k  of  x?  And  it  seems  like  there  is  because  delta  k  of  x  is  linear  in  x,
+ so  that  we  can  obtain  that  the  same  boundary  where  two  class  probabilities  are  equal  is  linear  in  x.  So  how  can  we  get  the  expression  of  the  delta  x?
+ And  the  way  that  we  get  the  expression  of  delta  x  comes  from  the  fact  that  the  probability  of  the  feature  value  given  y  is  multivariate  normal  distribution.
+ So  this  slide  has  lots  of  math,  but  for  those  that  are  interested,  then  we  can  try  to  address  a  bit  what  is  going  on  here,
+ but  for  those  who  think  that's  the  math  is  too  intimidating.  So  basically,  this  page  is  not  required  for  the  homework  and  for  the  exams  of  this  course.
+ But  this  is  just  like  at  the  end  of  the  slide.  bit  more  details  for  those  who  are  curious  about  why  the  delta  x  is  a  linear  function  of  the  x.  This  comes  from  the  fact  that  the  multivariate  normal  distribution  of  feature  given  class  k  can  be  written  in  this  form.
+ So  if  we  consider  x  as  just  one  dimensional,  then  basically,  this  expression  is  just  equal  to  1  over  the  square  root  of  2  pi.
+ So  p  here  is  the  feature  dimension.  And  in  our  example  where  we  have  four  features  in  total,  p  is  equal  to  4.  And  this  one  means  the  determinants  of  the  variance  complex  matrix,
+ and  we  take  the  square  root  of  it.  In  the  unit  of  a  very  feature  case,  this  object  is  just  equal  to  the  standard  deviation  of  the  feature  value.
+ And  then  this  is  the  exponential  to  minus  1 /2  times  the  x  minus  the  mean  estimated  mean  of  class  k  multiplied  by  the  inverse  course  matrix  and  multiplied  by  the  x  minus  mu  k.
+ And  in  the  unit  of  a  very  case,  basically,  we  can  write  this  as  the  square  difference  between  x  and  the  mean,  and  divided  by  the  variance  of  x.
+ So  you  can  verify  that  in  the  unit  of  a  very  dimension  case.  This  is  back  to  the  methodology  of  the  normal  distribution.
+ So  we  just  take  this  as  given.  This  is  the  model  of  a  very  normal.  And  then  we  use  this  expression  to  show  that  the  mu  k  of  x  is--  as  linear  in  x.
+ So  what  we  do  is  that  we  then  go  back  to  the  definition  of  the  log  probability  of  y  equals  to  k  given  x.
+ So  we  can  write  this  by  the  base  theorem,  right  as  the  joint  probability  of  x  and  y  divided  by  the  probability  of  x.
+ So  when  we  use  the  log  operator,  the  log  of  two  ratios  is  just  equal  to  the  difference  between  two  logs.  So  we  can  separate  that  into  the  log  of  the  joint  probability  of  x  and  y  multiplied  by  the  log  of  the  probability  of  x.
+ And  then  the  joint  probability  of  x  and  y  can  then  be  further  decomposed  into  the  probability  of  class  k  multiplied  by  the  probability  of  feature  given  class  k.
+ We  then  further  use  the  probability  that  the  log  of  the  two  products  is  equal  to  the  sum  of  the  two  logs  to  separate  this  object  into  the  two  here.
+ Then  the  next  step  is  we  use  the  definition  of  each  object.  So  for  the  first  one,
+ the  probability  of  class  k  is  equal  to  the  pi  k  hat  in  our  IS  example  is  one  third.  So  it's  the  log  one  third.  And  for  the  second  object,  then  this  would  be  the  log  of  this  density  function.
+ And  then  the  log  of  the  first  one  is  just  some  constant  that  does  not  depend  on  the  class  k.  And  then  for  the  second  one,  the  exponential  to  minus  one  half,
+ object  can  be  written  as  this  one  because  the  log  of  this  exponential  is  just  equal  to  the  minus  1 /2  times  this  quadratic  form  of  x.
+ And  then  the  first  term,  this  does  not  depend  on  class  K.  So  it's  absorbed  into  this  C  prime  that  does  not  depend  on  K.
+ And  then  also  for  this  minus  log  feature  property,  this  also  does  not  depend  on  class  K.  So  we  can  also  observe,  absorb  this  term  into  this  C  prime.
+ So  basically,  what  we  get  here  is  that  for  the  first  and  the  C  prime,  we  combine  them  together.  So  basically,
+ for  this  object,  so  we  further  separate  the  components  that  depend  on  K  and  those  that  do  not  depend  on  K.
+ And  then  those  depend  on  K  as  summarized  into  this  delta  K  of  x.  So  we  can  see  which  terms  depend  on  K.
+ For  sure,  the  log  of  pi  K  depends  on  K.  And  also  for  this  one,  we  can  also  further  separate  this  into  the  parts  that  depend  on  K  and  the  parts  that  do  not  depend  on  K.
+ So  parts  that  do  not  depend  on  K  is  this  minus  1 /2  x  transpose  sigma  inverse  times  x.  So  this  term  does  not  depend  on  K.  And  all  the  remaining  components  in  this  object  depend  on  K,
+ which  are  equal  to  the  second  and  the  third  terms  here.  So  you  can  see  that  the  object  of  x  square  does  not  depend  on  K.
+ So  it's  combined  into  another  constant  C.  And  then  we  are  only  left  with  the  the  components  that  is  linear  in  x.
+ So  you  can  see  that  even  though  the  density  is  a  correct  function  in  x,  we  have  this  x  transpose  sigma  inverse  x.  But  this  square  term  does  not  depend  on  k.
+ So  it's  not,  it's  shared,  means  it's  shared,  it's  identical  across  the  three  classes.  And  this  is,  this  does  not  affect  the  shape  of  the  certain  boundary.
+ So  now  we  can  combine  it  into  some  constant  term.  And  the  term  that  depends  on  class  is  only  linear  in  x.  So  this  explains  why  the  delta  k  of  x  is  a  linear  function  of  x.
+ And  when  the  delta  k  of  x  is  linear  in  x,  then  with  what  we  have  on  the  first  slide,  the  certain  boundary  that  separates  class  k  and  class  l  is  linear  in  x.
+ So  graphically,  what  this  means  is  that  the  certain  boundaries  that  separates  the  two  classes,
+ say  to  separate  between  the  polsar  and  the  vesicolor,  is  linear  in  the  title  width,  title  length,  simple  length,
+ and  simple  width.  So  it's  a  linear  function  of  the  four  features.  And  on  this  boundary,  the  probability  of  the  Cytosa  and  vesicolor  is  identical.
+ So  basically  here  we  have  discussed  in  this  slide.  in  detail  why  the  LDA  has  a  linear  discern  boundary  in  X.
+ And  if  you  have  any  questions,  please  let  me  know.  But  what  is  the  QDA?  So  for  a  QDA,
+ the  fundamental  difference  is  that  QDA  does  not  have  a  linear  discern  boundary.  And  the  reason  is  that  the  log  of  the  probability  of  Y  given  X  is  equal  to  C  plus  this  delta  X.
+ And  delta  X  is  a  quadratic  function  in  X,  as  shown  here.  So  it's  quadratic  in  X.
+ And  why  do  we  have  this  quadratic  term?  So  basically,  this  is  because--  as  we  have  their  math  here--  this  object  is  indexed  by  K.
+ Which  means  the  X  transpose  sigma  K  X  depends  on  class  K.  So  we  cannot  combine  this  term  into  a  constant  that  does  not  vary  with  class  anymore.
+ And  we  need  to  put  this  term  into  delta  K  of  X.  So  this  delta  K  of  X,  because  of  this  quadratic  term,
+ is  a  quadratic  function  in  X.  And  when  the  delta  K  is  the  longer  linear  in  X,  is  quadratic  in  X,  this  makes  the  discern  boundary  of  QDA  to  be  quadratic.
+ And  this  can  then  make  us  to  compare  the  discern  boundary  and  the  trade -off  in  LDA  and  QDA.  So  suppose  we  just  have  two  classes,
+ the  blue  one  and  the  green  one.  And  then  the  certain  boundary  of  QDA,
+ you  can  see  here  this  is  a  quadratic  function  in  x1  and  quadratic  function  in  x2.  And  on  this  boundary,  predicted  by  QDA,  the  property  of  blue  and  yellow  are  identical.
+ Similarly  here,  you  can  see  that  this  this  green  curve  predicted  by  QDA  is  quadratic  in  x1  and  x2.  And  on  this  boundary,
+ the  property  of  two  classes  are  identical.  And  then  for  LDA,  this  is  linear  in  x1  and  x2.
+ And  then  we  may  consider  what  would  be  the  trade  off  between  the  LDA  and  QDA.  So  QDA  has  more  parameters  because  the  current  matrix  is  indexed  by  x.
+ And  the  LDA  has  fewer  parameters  because  the  current  matrix  is  not  indexed  by  x.  So  LDA  is  less  flexible  than  QDA.
+ So  when  we  have  a  small  sample  size,  where  we  care  a  lot  about  the  variance,  then  QDA,  because  it's  less  flexible,  it  has  a  smaller  variance.
+ So  this  may  be  more  preferable.  And  then  if  we  have  a  large  sample  size,  when  the  variance  is  not  a  big  concern,  then  QDA  has  more  parameters  and  is  more  flexible.
+ So  the  QDA  may  be  preferable.  But  this  also  depends  on  what  the  true  design  boundary  is.  If  the  true  design  boundary  is  linear,
+ then  the  LDA  will  be  better  but  if  the  true  the  certain  boundary  on  the  right  case  this  purple  one  is  nothing  near  then  the  QDA  kind  of  approximates  the  true  the  certain  boundary  better  then  the  QDA  would  have  a  smaller  classification  error  rates  than  LDA  so  here  I  just  wanted  to  make  a  side  comment  in  LDA  we  also  use  the  sigma  k  to  estimate  their  sigma  matrix  so  it  seems  like  in  LDA  we  also  have  a  procedure  where
+ we  estimate  a  different  current  matrix  for  a  different  class  then  you  may  wonder  why  do  we  say  that  the  LDA  has  fewer  parameters  the  fundamental  reason  here  is  that  in  LDA  fundamentally  when  we  classify  we  classify  based  on  the  probability  of  y  given  x  and  when  we  predicts  based  on  the  probability  of  y  given  x  oh  we  use  the  delta  kx  where  the  sigma  does  not  depend  on  k  so  the  information  or  the  parameters  that  are
+ used  to  make  their  classification  does  not  depend  on  k  so  this  means  the  parameters  used  to  to  make  classification  does  not  depend  on  k  so  a  number  of  parameters  that  are  relevant  for  classification  is  less  than  the  information  or  the  estimate  that  the  number  of  parameters  in  QDA  used  to  make  classification  so  when  the  number  of  of  parameters  that  are  relevant  to  make  classification  is  fewer  in  the  LDA  case,
+ then  the  LDA  is  less  flexible.  Okay,
+ so  this  is  the  comparison  between  LDA  and  QDA.  And  you  may  also  wonder,  how  do  we  compare  their  LDA  with  their  logistic  regression?
+ So  for  LDA  and  logistic  regression,  there  are  also  some  similarities  between  the  two,  and  there  are  also  some  differences.  The  similarity  between  the  two  is  that  both  LDA  and  logistic  regression  produce  a  certain  near -discount  boundary.
+ So  we  have  talked  about  starting  near -discount  boundary  for  LDA,  but  why  their  logistic  regression  also  has  a  linear  discerned  boundary?  The  reason  is  that  it's  required  in  the  logistic  regression,
+ but  what  model  do  we  impose?  We  impose  a  logistic  model.  In  the  logistic  model,  the  right -hand  side  is  a  linear  function  of  x,  and  the  left -hand  side  is  a  log  r.
+ So  what  is  the  discerned  boundary?  So  the  discerned  boundary  is  the  set  of  x,  such  that  two  class  probabilities  are  equal,  and  both  equal  to  0 .5.
+ And  in  other  words,  the  log  of  the  probability  of  1  is  equal  to  the  log  of  probability  of  0,
+ given  x.  And  this  object  is  just  equal  to  log  of  and  equal  to  beta  plus  beta  1x.  So  you  can  see  that  all  the  x  that  satisfies  beta  0  plus  beta  1x  is  equal  to  0.
+ is  linear  in  x.  And  it  looks  like  a  similar  form  as  the  LDA  case  where  the  set  of  x  that  satisfy  c0  plus  c1x  is  equal  to  0.
+ So  you  can  see  that  the  set  of  x  where  two  probabilities  are  equal  are  all  linear  in  x.
+ So  that's  why  the  logistic  regression  also  has  a  linear  discern  boundary.  But  the  way  that  LDA  and  QDA  obtain,
+ the  way  LDA  and  logistic  regression  obtain  their  linear  discern  boundary  is  different.  The  LDA  uses  the  generative  method,
+ but  the  logistic  regression  imposes  a  logic  model  and  uses  the  maximum  likelihood  estimator  to  obtain  the  beta  0  and  beta  1.
+ So  the  estimation  procedure  is  different.  So  in  certain  cases,  the  LDA  and  logistic  regression  produce  similar  results,  but  this  is  not  obvious  their  case.
+ And  now  we  may  consider  when  the  LDA  is  more  preferable  and  when  the  logistic  regression  is  more  preferable.  So  LDA  can  be  better  if  their  assumption  of  their  normal  distribution  is  reasonable.
+ For  example,  in  the  IRIS  example,  where  the  feature  distribution  is  roughly  normal,  then  we  expect  that  in  this  case  the  LDA  could  be  better,
+ but  if  their  feature  distribution  is  very  far  from  normal,  then  the  assumption  of  LDA  and  logistic  regression  can  be  better.  is  violated.  In  this  case,  as  possible,
+ that's  the  logistic  regression  is  better.  So  this  is  all  I  want  to  talk  about  for  this  lecture.
+ And  at  the  beginning  of  next  lecture,  I  will  briefly  review  the  certain  boundary  of  LDA,  QDA,  and  logistic  regression.  And  answer  your  questions.
+ We  will  also  compare  their  LDA,  QDA,  with  their  10 -year  neighbors.  And  we  will  see  some  examples  when  each  of  those  methods  perform  well.
